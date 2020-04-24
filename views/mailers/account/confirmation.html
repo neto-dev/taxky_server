@@ -1,0 +1,25 @@
+<div style="background-color: #fafafa; max-width: 600px; padding: 35px; text-align: center;">
+
+    <div style="text-align: center;">
+        <img src="https://res.cloudinary.com/operandy/image/upload/c_scale,w_420/v1565823898/statics/sabelotodo.png" alt="taxky.win">
+    </div>
+
+
+    <p style="text-align: justify; margin-top: 45px; font-size: 1.4em;"> Hola <strong style="color: #ff6735">{{ .Username }}</strong>, estas a punto de completar tu registro,
+        para terminar confirma tu dirección de correo: </p>
+
+    <a href="{{ .Host }}/confirmar-cuenta/{{ .Token }}"
+       style="display: inline-block;
+           margin: 0 auto;
+           font-weight: bold;
+           padding: 10px;
+           color: white;
+           background-color: #ff6735;
+           text-decoration: none;">
+        Confirmar Cuenta
+    </a>
+
+    <p style="margin-top: 60px; font-size: 0.8em;">Este mensaje se envió a <strong style="color: #ff6735; text-decoration: none; padding: 10px;">{{ .Email }}.</strong>
+        Si tienes preguntas o quejas, <a style="color: #ff6735; " href="taxky.win">contáctanos.</a></p>
+
+</div>
