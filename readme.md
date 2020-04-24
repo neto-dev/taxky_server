@@ -1,10 +1,9 @@
-# Implementación MVC + Go lang + Mysql + Echo
+# Taxky - Aprende Jugando
 
-Nota: En el próximo release implementare los unit test utilizando Moks y entorno de desarrollo Test. Fecha aproximada 15/abr/2019
+### Una Nueva Manera De Aprender
+Con Taxky tus hijos pueden aprende el significado de la responsabilidad, todo esto mediante tareas diarias con puntuación, estas tareas le darán puntos los cuales podrá intercambiar por lo que ellos deseen.
 
-Ejemplo de la implementación de MVC en un servidor go + echo.
-
-El ejemplo cuenta con archivos de configuración para bases de datos basado en el entorno que se este ejecutando.
+Servidor encargado de proveer información mediante servicios Rest
 
 Tecnologias implementadas:
 
@@ -13,15 +12,15 @@ Tecnologias implementadas:
 - Mysql
 - Echo
 
-El actual ejemplo cuenta con una implementación básica de los métodos **Get/GetByID/Create/Update/Delete**, con un método Filters para realizar filtros.
+# Instrucciones
 
 Primero tendrás que clonar el repositorio a tu computadora con el siguiente comando dentro del directorio `$GOPATH/src/github.com/`.
 
-`git clone https://github.com/neto-dev/mvc-golang-final.git`
+`git clone  https://github.com/neto-dev/taxky_server.git`
 
 Una vez descargado ingresar a la carpeta.
 
-`cd mvc-golang-final`
+`cd taxky_server`
 
 Para instalar las diferentes dependencias que se utilizan en el proyecto ejecutar el siguiente comando.
 
@@ -69,7 +68,6 @@ Teniendo una vez esto ya podremos ejecutar el proyecto con el comando.
 
 Y listo las migraciones y toda la configuración se ejecutara automáticamente al correr el servicio.
 
-Es una implementación básica con la cual podrán desarrollar sus servidores o para basarse según sea el caso. 
 
 ### Autor
-@neto-dev Ernesto Valenzuela, apasionado a la programación así como de las tecnologías open source, amante de los lenguajes Ruby, PHP, Python y Go, puedes contactarme directamente a correo hello@netodev.me o bien seguirme en twitter [@neto_dev](https://twitter.com/neto_dev)
+@neto-dev Ernesto Valenzuela, apasionado a la programación así como de las tecnologías open source, amante de los lenguajes Ruby, PHP, Python y Go, puedes contactarme directamente a correo hello@netov.dev o bien seguirme en twitter [@neto_dev](https://twitter.com/neto_dev) | Más: [Web](https://netov.dev)
