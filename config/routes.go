@@ -38,5 +38,8 @@ func Routes(DB *gorm.DB, group echo.Group) {
 	*/
 
 	v1.NewUserController(group, DB)
+	v1.NewCharacterController(group, DB)
+	v1.NewAwardController(group, DB)
+	v1.NewTaskController(group, DB)
 
 }

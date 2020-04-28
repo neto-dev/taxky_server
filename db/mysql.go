@@ -54,7 +54,7 @@ func InitMysqlDB(conf config.Config) *gorm.DB {
 		configuration.DataBase.Pass+"@tcp("+configuration.DataBase.
 		DbHost+")/"+configuration.DataBase.DataBase+"?charset=utf8&parseTime=True&loc=Local")
 
-		/*
+	/*
 		Creamos la base de datos en caso de que no exista
 
 		We create the database in case it doesn't exist

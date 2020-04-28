@@ -9,11 +9,11 @@ import (
 	"os"
 )
 
-type BaseMail struct{
-	To []string
-	From string
+type BaseMail struct {
+	To      []string
+	From    string
 	Subject string
-	Body string
+	Body    string
 }
 
 func AppDirectory() (dir string) {
@@ -32,29 +32,29 @@ func BuildAuth() (auth smtp.Auth) {
 	//Genera la configuracion de authenticacion PLAIN TEXT
 	if os.Getenv("SMTP_AUTH") == "PLAIN" {
 		user, pass := os.Getenv("SMTP_USER"), os.Getenv("SMTP_PASSWORD")
-		auth = smtp.PlainAuth("",user,pass,os.Getenv("SMTP_HOST"))
+		auth = smtp.PlainAuth("", user, pass, os.Getenv("SMTP_HOST"))
 	}
 
 	return
 
 }
 
-func ParseTemplate(filename string, parseData interface{}) (string, error){
+func ParseTemplate(filename string, parseData interface{}) (string, error) {
 
 	buf := &bytes.Buffer{}
 
-	t, err := template.ParseFiles( AppDirectory()+"/views/mailers/"+filename)
+	t, err := template.ParseFiles(AppDirectory() + "/views/mailers/" + filename)
 	if err != nil {
 		log.Fatal(err)
 		return "", err
 	}
 
-	err = t.Execute( buf, parseData)
+	err = t.Execute(buf, parseData)
 
 	return buf.String(), err
 }
 
-func SendMail(content BaseMail) error{
+func SendMail(content BaseMail) error {
 
 	// Construye la authenticacion
 
@@ -69,8 +69,8 @@ func SendMail(content BaseMail) error{
 
 	// Build mail's body
 
-	msg := []byte("Content-type: text/html; charset=iso-8859-1;" + "\r\n" +"Subject: "+content.Subject+"\r\n" +
-		"\r\n"  +content.Body+"\r\n")
+	msg := []byte("Content-type: text/html; charset=iso-8859-1;" + "\r\n" + "Subject: " + content.Subject + "\r\n" +
+		"\r\n" + content.Body + "\r\n")
 
 	// Join addr
 
@@ -82,7 +82,7 @@ func SendMail(content BaseMail) error{
 
 	if content.From == "" {
 		sender = "no-contestar@taxky.win"
-	}else{
+	} else {
 		sender = content.From
 	}
 
@@ -93,7 +93,7 @@ func SendMail(content BaseMail) error{
 	if err != nil {
 		log.Fatal(err)
 		return err
-	}else{
+	} else {
 		log.Print("Correo enviado.")
 		return nil
 	}

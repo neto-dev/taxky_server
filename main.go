@@ -79,7 +79,6 @@ func main() {
 		AllowMethods: []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE},
 	}))
 
-
 	/*
 		Seteamos los middlewares que deseamos implementar
 

@@ -102,11 +102,11 @@ func GetByID(_ctx echo.Context, _db *gorm.DB, _model interface{}) error {
 func Filters(_ctx echo.Context, _db *gorm.DB, _model interface{}) error {
 	//Authenticacion
 
-	_, err := utils.Authentication(_ctx, _db)
+	// _, err := utils.Authentication(_ctx, _db)
 
-	if err != nil {
-		return utils.ReturnErrorJSON(_ctx, err.Error(), err)
-	}
+	// if err != nil {
+	// 	return utils.ReturnErrorJSON(_ctx, err.Error(), err)
+	// }
 	/*
 		We sent to call the NewFilter method to get the
 		results according to the parameters we received

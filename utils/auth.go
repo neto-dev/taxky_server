@@ -29,11 +29,11 @@ type TokenData struct {
 }
 
 type RecoveryPasswordData struct {
-	Token string
+	Token    string
 	Password string
 }
 
-func GenerateSecureToken () (string, error) {
+func GenerateSecureToken() (string, error) {
 	return randomHex(32)
 }
 
@@ -80,7 +80,7 @@ func Authentication(_ctx echo.Context, _DB *gorm.DB) (uint, error) {
 
 	if err := _DB.Where("token = ?", token).First(user).Error; err != nil {
 
-				return 0, errors.New("Unauthorized")
+		return 0, errors.New("Unauthorized")
 	} else {
 		return user.ID, nil
 	}
@@ -112,21 +112,19 @@ func Access(_ctx echo.Context, _DB *gorm.DB) (interface{}, error) {
 	return user, nil
 }
 
-
-
 // Confirma la cuenta
 func ConfirmAccount(_ctx echo.Context, _DB *gorm.DB) error {
 
 	user := &models.User{}
 
-	token:= &TokenData{}
+	token := &TokenData{}
 
 	if err := _ctx.Bind(token); err != nil {
 		return errors.New("an error has occurred while processing the received data")
 	}
 
 	err := _DB.Where("confirmation_token = ?", token.Token).First(user).Error
-	if  err != nil {
+	if err != nil {
 		return errors.New("usuario no encontrado, codigo invalido")
 	}
 
@@ -145,15 +143,14 @@ func ConfirmAccount(_ctx echo.Context, _DB *gorm.DB) error {
 		}
 	}
 
-
 	return nil
 }
 
 // Actualiza la contrasena por medio del recovery token
-func PasswordRecovery(_ctx echo.Context, _DB *gorm.DB) error{
+func PasswordRecovery(_ctx echo.Context, _DB *gorm.DB) error {
 
 	user := &models.User{}
-	data:= &RecoveryPasswordData{}
+	data := &RecoveryPasswordData{}
 
 	// Parse body data
 	if err := _ctx.Bind(data); err != nil {
@@ -162,7 +159,7 @@ func PasswordRecovery(_ctx echo.Context, _DB *gorm.DB) error{
 
 	// Find user
 	err := _DB.Where("reset_password_token = ?", data.Token).First(user).Error
-	if  err != nil {
+	if err != nil {
 		return errors.New("usuario no encontrado, codigo invalido")
 	}
 
@@ -189,6 +186,5 @@ func PasswordRecovery(_ctx echo.Context, _DB *gorm.DB) error{
 	}
 
 	return nil
-
 
 }

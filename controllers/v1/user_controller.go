@@ -147,12 +147,12 @@ func (_controller_ ControllerUser) PasswordRecovery(_ctx echo.Context) error {
 	return utils.ReturnRespondJSON(_ctx, http.StatusOK, nil)
 }
 
-func (_controller_ ControllerUser) SendConfirmationEmail(_ctx echo.Context) (err error){
+func (_controller_ ControllerUser) SendConfirmationEmail(_ctx echo.Context) (err error) {
 
 	user := &models.User{}
 
 	// Parse body
-	account:= &AccountData{}
+	account := &AccountData{}
 	if err := _ctx.Bind(account); err != nil {
 		return utils.ReturnErrorJSON(_ctx, err.Error(), errors.New("an error has occurred while processing the received data"))
 	}
@@ -164,7 +164,7 @@ func (_controller_ ControllerUser) SendConfirmationEmail(_ctx echo.Context) (err
 
 	if err == nil {
 
-		GenerateToken:
+	GenerateToken:
 
 		// Generate & assign token
 		token, err := utils.GenerateSecureToken()
@@ -191,18 +191,15 @@ func (_controller_ ControllerUser) SendConfirmationEmail(_ctx echo.Context) (err
 				} else {
 					return utils.ReturnErrorJSON(_ctx, err.Error(), err)
 				}
-			}else{
+			} else {
 				// Send email
 				err = mailers.SendConfirmationCode(*user)
 
 			}
 
-
-		}else{
+		} else {
 			return utils.ReturnErrorJSON(_ctx, err.Error(), err)
 		}
-
-
 
 	}
 
@@ -215,7 +212,7 @@ func (_controller_ ControllerUser) SendPasswordRecoveryEmail(_ctx echo.Context) 
 	user := &models.User{}
 
 	// Parse body
-	account:= &AccountData{}
+	account := &AccountData{}
 	if err := _ctx.Bind(account); err != nil {
 		return utils.ReturnErrorJSON(_ctx, err.Error(), errors.New("an error has occurred while processing the received data"))
 	}
@@ -250,12 +247,12 @@ func (_controller_ ControllerUser) SendPasswordRecoveryEmail(_ctx echo.Context) 
 				} else {
 					return utils.ReturnErrorJSON(_ctx, err.Error(), err)
 				}
-			}else{
+			} else {
 				// Send email
 				err = mailers.SendPasswordInstruction(*user)
 			}
 
-		}else{
+		} else {
 			return utils.ReturnErrorJSON(_ctx, err.Error(), err)
 		}
 
@@ -264,7 +261,6 @@ func (_controller_ ControllerUser) SendPasswordRecoveryEmail(_ctx echo.Context) 
 	return utils.ReturnRespondJSON(_ctx, http.StatusOK, err)
 
 }
-
 
 func NewUserController(_e echo.Group, _DB *gorm.DB) echo.Group {
 	/*
@@ -296,7 +292,6 @@ func NewUserController(_e echo.Group, _DB *gorm.DB) echo.Group {
 
 	_e.POST("/users/send-account-confirm", controller.SendConfirmationEmail)
 	_e.POST("/users/send-password-forgot", controller.SendPasswordRecoveryEmail)
-
 
 	return _e
 }

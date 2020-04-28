@@ -26,47 +26,46 @@ import (
 
 // SendMail() retorna nil si todo salio bien
 
-
 // Dataformat for the template
 
 type VerificationCodeMailData struct {
-	Host string
-	Email string
-	Token string
+	Host     string
+	Email    string
+	Token    string
 	Username string
 }
 
 type PasswordInstructionMailData struct {
-	Host string
+	Host     string
 	Username string
-	Code string
-	Email string
+	Code     string
+	Email    string
 }
 
 // Send methods
 // Metodos de envio
 
-func SendConfirmationCode(user models.User) error{
+func SendConfirmationCode(user models.User) error {
 
 	// Parse Template
-	body, err := ParseTemplate("account/confirmation.html",VerificationCodeMailData{
-		Host: os.Getenv("HOST"),
-		Email: user.Email,
-		Token: user.ConfirmationToken,
+	body, err := ParseTemplate("account/confirmation.html", VerificationCodeMailData{
+		Host:     os.Getenv("HOST"),
+		Email:    user.Email,
+		Token:    user.ConfirmationToken,
 		Username: user.FirstName,
 	})
 
 	if err != nil {
 		log.Fatal(err)
 		return err
-	} else{
+	} else {
 
 		// Build mail data
 		mailData := BaseMail{
-			To: []string{user.Email},
-			Body: body,
+			To:      []string{user.Email},
+			Body:    body,
 			Subject: "Verificación de cuenta",
-			From: "no-contestar@taxky.win",
+			From:    "no-contestar@taxky.win",
 		}
 
 		// Send Mail
@@ -80,24 +79,24 @@ func SendConfirmationCode(user models.User) error{
 func SendPasswordInstruction(user models.User) error {
 
 	// Parse Template
-	body, err := ParseTemplate("account/password_instructions.html",PasswordInstructionMailData{
-		Host: os.Getenv("HOST"),
+	body, err := ParseTemplate("account/password_instructions.html", PasswordInstructionMailData{
+		Host:     os.Getenv("HOST"),
 		Username: user.FirstName,
-		Code: user.ResetPasswordToken,
-		Email: user.Email,
+		Code:     user.ResetPasswordToken,
+		Email:    user.Email,
 	})
 
 	if err != nil {
 		log.Fatal(err)
 		return err
-	} else{
+	} else {
 
 		// Build mail data
 		mailData := BaseMail{
-			To: []string{user.Email},
-			Body: body,
+			To:      []string{user.Email},
+			Body:    body,
 			Subject: "Contraseña olvidada",
-			From: "no-contestar@taxky.win",
+			From:    "no-contestar@taxky.win",
 		}
 
 		// Send Mail

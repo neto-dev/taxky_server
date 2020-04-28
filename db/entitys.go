@@ -44,11 +44,30 @@ We declare the variable entitys which will be an object of Entitys and at the sa
 */
 var entitys = Entitys{
 	Entity{
+		models.Award{},
+		nil,
+	},
+	Entity{
+		models.Character{},
+		[]Relationship{
+			{
+				"user_id",
+				"users(id)",
+				"RESTRICT",
+				"RESTRICT",
+			},
+		},
+	},
+	Entity{
 		models.Permission{},
 		nil,
 	},
 	Entity{
 		models.Role{},
+		nil,
+	},
+	Entity{
+		models.Task{},
 		nil,
 	},
 	Entity{
