@@ -20,6 +20,7 @@ type User struct {
 	LastName           string `gorm:"type:varchar(250)"`
 	Status             bool
 	Token              string `gorm:"type:varchar(250)"`
+	Characters         []Character
 }
 
 func (model *User) BeforeUpdate() (err error) {

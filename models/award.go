@@ -9,7 +9,7 @@ import (
 
 type Award struct {
 	gorm.Model
-	Name        string `gorm:"type:varchar(100)"`
+		Name        string `gorm:"type:varchar(100)"`
 	Description string `gorm:"type:varchar(250)"`
 	Points      int32
 	UserID      uint

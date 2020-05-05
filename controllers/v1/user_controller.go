@@ -18,6 +18,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
@@ -57,7 +58,36 @@ func (_controller_ ControllerUser) Get(_ctx echo.Context) error {
 }
 
 func (_controller_ ControllerUser) GetByID(_ctx echo.Context) error {
-	return GetByID(_ctx, _controller_.DB, &models.User{})
+	user := &models.User{}
+	/*
+		Filter within the database searching for the record corresponding
+		to the received id. The preload works to bring up the relationship
+		data
+		Filtramos dentro de la base de datos buscando el registro que
+		corresponda con el id recibido. El preload funciona para traer
+		los datos de la relacion
+	*/
+
+	idP, err := strconv.Atoi(_ctx.Param("id"))
+
+	if err != nil {
+		return utils.ReturnErrorJSON(_ctx, err.Error(), err)
+	}
+	/*
+		Seteamos la variable idP en la variable id transformandola en uint
+		We set the variable idP in the variable id transforming it into uint
+	*/
+	id := uint(idP)
+
+	if err := _controller_.DB.Preload("Characters").First(user, id).Error; err != nil {
+		return utils.ReturnErrorJSON(_ctx, "Record not found", err)
+	}
+
+	/*
+		We return the values
+		Retornamos los valores
+	*/
+	return utils.ReturnRespondJSON(_ctx, http.StatusOK, user)
 }
 
 func (_controller_ ControllerUser) Filters(_ctx echo.Context) error {
