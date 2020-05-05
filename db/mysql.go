@@ -60,9 +60,9 @@ func InitMysqlDB(conf config.Config) *gorm.DB {
 		We create the database in case it doesn't exist
 	*/
 
-	if err := db.Exec("CREATE DATABASE IF NOT EXISTS " + configuration.DataBase.DataBase).Error; err != nil {
+	/*if err := db.Exec("CREATE DATABASE IF NOT EXISTS " + configuration.DataBase.DataBase).Error; err != nil {
 		log.Panicf("Failed to create to database: %v\n", err)
-	}
+	}*/
 
 	/*
 		Asignamos la base de datos a usar

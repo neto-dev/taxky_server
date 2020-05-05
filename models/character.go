@@ -12,7 +12,7 @@ type Character struct {
 	Name     string `gorm:"type:varchar(250)"`
 	NickName string `gorm:"type:varchar(250)"`
 	Points   int32
-	Sex      bool
+	Sex      string `gorm:"type:varchar(10)"`
 	Status   bool
 	UserID   uint
 	User     User

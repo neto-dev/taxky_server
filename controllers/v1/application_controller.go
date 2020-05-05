@@ -52,7 +52,7 @@ func Get(_ctx echo.Context, _db *gorm.DB, _model interface{}) error {
 
 		Obtenemos los registros
 	*/
-	if err := _db.Find(_model).Order("id asc").Error; err != nil {
+	if err := _db.Find(_model).Order("id desc").Error; err != nil {
 		return utils.ReturnErrorJSON(_ctx, "Records Find Failure. Please inform your service representative about this error.", err)
 	}
 	/*

@@ -79,7 +79,9 @@ func (_controller_ ControllerUser) GetByID(_ctx echo.Context) error {
 	*/
 	id := uint(idP)
 
-	if err := _controller_.DB.Preload("Characters").First(user, id).Error; err != nil {
+	if err := _controller_.DB.Preload("Characters", func(db *gorm.DB) *gorm.DB {
+		return db.Order("characters.id DESC")
+	}).First(user, id).Error; err != nil {
 		return utils.ReturnErrorJSON(_ctx, "Record not found", err)
 	}
 
