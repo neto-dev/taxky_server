@@ -40,6 +40,10 @@ func (_controller_ ControllerAward) Filters(_ctx echo.Context) error {
 }
 
 func (_controller_ ControllerAward) Create(_ctx echo.Context) error {
+	return Create(_ctx, _controller_.DB, &models.Award{})
+}
+
+func (_controller_ ControllerAward) AwardCharacter(_ctx echo.Context) error {
 	//Authenticacion
 
 	var newAwards []uint

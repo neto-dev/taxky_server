@@ -21,6 +21,8 @@ type User struct {
 	Status             bool
 	Token              string `gorm:"type:varchar(250)"`
 	Characters         []Character
+	Awards             []Award
+	Tasks              []Task
 }
 
 func (model *User) BeforeUpdate() (err error) {
