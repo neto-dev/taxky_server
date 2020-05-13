@@ -37,6 +37,10 @@ func (_controller_ ControllerTask) Filters(_ctx echo.Context) error {
 }
 
 func (_controller_ ControllerTask) Create(_ctx echo.Context) error {
+	return Create(_ctx, _controller_.DB, &models.Task{})
+}
+
+func (_controller_ ControllerTask) TaskCharacters(_ctx echo.Context) error {
 	//Authenticacion
 
 	var newtasks []uint
